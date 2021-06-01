@@ -9,8 +9,11 @@
 </style>
 
 <div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
+    {%if app.user %}
+        <h1>Hello {{ app.user.firstname }}! ✅</h1>
+    {% else %}
+        <h1>Bienvenue sur RDVappli! ✅</h1>
+    {% endif %}
     This friendly message is coming from:
     <ul>
         <li>Your controller at <code><a href="{{ 'C:/wamp64/www/symfony03/src/Controller/MainController.php'|file_link(0) }}">src/Controller/MainController.php</a></code></li>
