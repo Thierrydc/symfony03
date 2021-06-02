@@ -151,4 +151,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
+
+    /**
+     * Nécessaire pour Easyadmin.
+     */
+    public function getUsername()
+    {
+        return $this->email;
+    }
 }
