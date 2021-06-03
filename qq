@@ -1,0 +1,67 @@
+warning: LF will be replaced by CRLF in src/Controller/Admin/DashboardController.php.
+The file will have its original line endings in your working directory
+warning: LF will be replaced by CRLF in src/Entity/Professional.php.
+The file will have its original line endings in your working directory
+[1mdiff --git a/src/Controller/Admin/DashboardController.php b/src/Controller/Admin/DashboardController.php[m
+[1mindex 9f8ae31..eceb334 100644[m
+[1m--- a/src/Controller/Admin/DashboardController.php[m
+[1m+++ b/src/Controller/Admin/DashboardController.php[m
+[36m@@ -2,6 +2,7 @@[m
+ [m
+ namespace App\Controller\Admin;[m
+ [m
+[32m+[m[32muse App\Entity\Profession;[m
+ use App\Entity\User;[m
+ use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;[m
+ use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;[m
+[36m@@ -15,10 +16,6 @@[m [mclass DashboardController extends AbstractDashboardController[m
+     /**[m
+      * @Route("/admin", name="app_admin_index")[m
+      */[m
+[31m-[m
+[31m-    /**[m
+[31m-     * @Route("/admin")[m
+[31m-     */[m
+     public function index(): Response[m
+     {[m
+         // redirect to some CRUD controller[m
+[36m@@ -46,5 +43,6 @@[m [mclass DashboardController extends AbstractDashboardController[m
+     {[m
+         yield MenuItem::linktoDashboard('Dashboard', 'fa fa-home');[m
+         yield MenuItem::linkToCrud('Users', 'fas fa-list', User::class);[m
+[32m+[m[32m        // yield MenuItem::linkToCrud('Profession', 'fas fa-list', Profession::class);[m
+     }[m
+ }[m
+[1mdiff --git a/src/Entity/Professional.php b/src/Entity/Professional.php[m
+[1mindex f1cc49a..b8e704b 100644[m
+[1m--- a/src/Entity/Professional.php[m
+[1m+++ b/src/Entity/Professional.php[m
+[36m@@ -22,6 +22,11 @@[m [mclass Professional[m
+      */[m
+     private $presentation;[m
+ [m
+[32m+[m[32m    /**[m
+[32m+[m[32m     * @ORM\OneToOne(targetEntity=User::class, cascade={"persist", "remove"})[m
+[32m+[m[32m     */[m
+[32m+[m[32m    private $Profession;[m
+[32m+[m
+     public function getId(): ?int[m
+     {[m
+         return $this->id;[m
+[36m@@ -38,4 +43,16 @@[m [mclass Professional[m
+ [m
+         return $this;[m
+     }[m
+[32m+[m
+[32m+[m[32m    public function getProfession(): ?User[m
+[32m+[m[32m    {[m
+[32m+[m[32m        return $this->Profession;[m
+[32m+[m[32m    }[m
+[32m+[m
+[32m+[m[32m    public function setProfession(?User $Profession): self[m
+[32m+[m[32m    {[m
+[32m+[m[32m        $this->Profession = $Profession;[m
+[32m+[m
+[32m+[m[32m        return $this;[m
+[32m+[m[32m    }[m
+ }[m

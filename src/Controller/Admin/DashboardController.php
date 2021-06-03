@@ -15,10 +15,6 @@ class DashboardController extends AbstractDashboardController
     /**
      * @Route("/admin", name="app_admin_index")
      */
-
-    /**
-     * @Route("/admin")
-     */
     public function index(): Response
     {
         // redirect to some CRUD controller
@@ -46,5 +42,6 @@ class DashboardController extends AbstractDashboardController
     {
         yield MenuItem::linktoDashboard('Dashboard', 'fa fa-home');
         yield MenuItem::linkToCrud('Users', 'fas fa-list', User::class);
+        // yield MenuItem::linkToCrud('Profession', 'fas fa-list', Profession::class);
     }
 }
